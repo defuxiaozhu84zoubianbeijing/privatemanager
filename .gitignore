@@ -1,3 +1,12 @@
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# My configurations:
+db.ini
+deploy_key_rsa
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
