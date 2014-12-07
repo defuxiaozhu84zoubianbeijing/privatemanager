@@ -1,0 +1,19 @@
+#toTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    width: 70px;
+    height: 70px;
+    background-image: url(../imgs/up.png);
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    z-index :999;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+#toTop:hover {
+    opacity: 0.8;
+    z-index:999;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+

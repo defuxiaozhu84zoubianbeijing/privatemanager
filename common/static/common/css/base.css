@@ -1,0 +1,46 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+	/*
+	font-family: 'Karla', serif;
+	margin: 0;
+	color: #5d5d5d;
+	text-shadow:0 0px, 1px 1px #ffffff;*/
+  	padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+footer {
+	text-align: center;
+	padding:30px 10px;
+	background:#dedede;
+	margin-top:20px;
+}
+footer p {
+	font-size:0.8571428571428571em; /* 12px/14px */
+}
+
+
+
+
+

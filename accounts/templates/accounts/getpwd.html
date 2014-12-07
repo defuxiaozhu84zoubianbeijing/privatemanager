@@ -1,0 +1,13 @@
+{% extends 'accounts/accounts_base.html'%}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block main %}
+<h3 align="center">
+	找回密码
+</h3>
+<hr/>
+{% crispy form  form.helper 'bootstrap3' %}
+<img id="get_pwd_img" style="display: none;" src="{% static 'accounts/imgs/loading.gif' %}" />
+<h4 align="center"><b style="color: red;">{{ error_messages }}</b></h4>
+
+{% endblock %}

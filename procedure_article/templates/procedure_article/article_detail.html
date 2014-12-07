@@ -1,0 +1,127 @@
+{% extends 'procedure_article/article_base.html '%}
+{% load staticfiles %}
+{% block main %}
+<!--article  -->
+<h2 align="center"> {{ article.title }} </h2><h5 style="float: right;">
+<hr />
+<h5 style="float: left;">类别 ： &nbsp;&nbsp;<a href="/procedure_article/articles/query/type/{{ article.type.id }}/">{{ article.type }}</a> &nbsp;&nbsp; 关键字 : &nbsp;&nbsp;
+{% for k in article.keyword.split %} <a href="/procedure_article/articles/query/keyword/{{ k }}/"><span class="badge">{{ k }}</span></a> {% endfor %}
+{% if perms.procedure_article.change_article %} <a  href="/procedure_article/articles/{{ article.id }}/update/">修改</a> {% endif %} </h5><h5 style="float: right;">{{ article.author }} 于 {{ article.publishdate|date:"Y-m-d"}}发布 </h5>
+<p>
+	&nbsp;&nbsp;
+</p>
+<p>
+	&nbsp;&nbsp;
+</p>
+<div id="article_detail" >
+	{{article.content|safe}}
+</div>
+<p>
+	&nbsp;&nbsp;
+</p>
+<p>
+	{% if article_pre %} 
+	<span style="float: left"> <a href = "/procedure_article/articles/{{article_pre.id}}/detail/" >上一篇&nbsp; {{ article_pre.title }}</a>&nbsp;&nbsp; </span>
+	{% endif %}
+	{% if article_next %}
+	<span style="float: right"> <a href = "/procedure_article/articles/{{article_next.id}}/detail/">下一篇&nbsp; {{ article_next.title }}</a> </span>
+	{% endif %}
+</p>
+<p>
+	&nbsp;&nbsp;
+</p>
+<hr/>
+<!-- Comment -->
+<div id="comment">
+	<div id="lytypouter" data-typ="code">
+		<div id="comouter" class="ly">
+			<div class="inner">
+				<div class="title">
+					<h4> 评论</h4>
+				</div>
+				{% for c in comments %}
+				<div class="conm">
+					<div class="lyinfo">
+						<div class="txj"></div>
+						<div class="tx">
+							<a href="/mem/20084" target="_blank"><img class="rotate" src="http://assets.jq22.com/mem/ed4210fa-6ffb-11e4-8b29-00163e001348.jpg"></a>
+						</div>
+						<div class="lyi">
+							<dd>
+								<a class="jg20 zbl" href="/mem/20084" target="_blank">{{ c.author }}</a>
+							</dd>
+							<dt>
+								<span class="jg20r">发表时间：{{ c.publishdate }} </span>
+								{% if perms.procedure_article.delete_comment %}<span><a href = "/procedure_article/articles/{{ article.id }}/comments/{{ c.id }}/delete/">删除</a></span>{% endif %}
+							</dt>
+
+						</div>
+						<ul>
+							{{ c.content|safe }}
+						</ul>
+					</div>
+				</div>
+				{% endfor %}
+				<div id="lytemp" type="text/html">
+					<div class="lyinfo hide">
+						<div class="txj"></div>
+						<div class="tx">
+							<a class="data_href" href="/mem/20084" target="_blank"><img class="data_src" src="http://assets.jq22.com/mem/ed4210fa-6ffb-11e4-8b29-00163e001348.jpg"></a>
+						</div>
+						<div class="lyi">
+							<dd>
+								<a class="jg20 zbl data_href data_nc" href="/mem/20084" target="_blank">走遍北京的德福小猪</a>
+							</dd>
+							<dt>
+								<span class="jg20r">发表时间：@{created_at} </span>
+							</dt>
+
+						</div>
+						<ul>
+
+						</ul>
+					</div>
+				</div>
+				<form id="inform" class="logined" action="/procedure_article/articles/{{ article.id }}/detail/" method="post" style="display:block;float:none" enctype="multipart/form-data" >
+					{% csrf_token %}
+					<div class="lytj">
+						<img class="batx data_src" src="http://assets.jq22.com/mem/ed4210fa-6ffb-11e4-8b29-00163e001348.jpg">
+						<p class="nc"></p>
+					</div>
+					<div class="dialog">
+						<div class="lyeditor">
+							<ul>
+								<li class="i1" title="评论专区">
+									评论专区
+								</li>
+								<li class="icon i2"></li>
+							</ul>
+							<div class="lyinner">
+								{{ form.content }}
+							</div>
+						</div>
+						<input id="article_id" type="hidden" name="article_id" value="{{ article.id }}">
+						<input id="author" type="hidden" name="author"  value="{{ request.user }}">
+						<div class="lybut">
+							<input class="btn" id="subly" type="submit" value="发表评论">
+						</div>
+					</div>
+
+				</form>
+				<div class="nologined lynologin" style="display: none;">
+					<span>请 </span><a class="loginbtn" href="#">登陆 </a><span>后发言 </span>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+<link rel="stylesheet"  href="{% static 'procedure_article/css/comment.css' %}" >
+<script type="text/javascript" src="{% static 'procedure_article/js/comment.js' %}"></script><script type="text/javascript" src="{% static 'procedure_article/tinymce/js/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript">
+	tinymce.init({
+		selector : "textarea"
+	}); 
+</script> {% endblock %} 

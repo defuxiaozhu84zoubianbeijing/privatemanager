@@ -1,0 +1,19 @@
+{% extends 'accounts/accounts_base.html'%}
+{% load staticfiles 	%}
+{% block main %}
+<h3 align="center">
+	注册成功
+</h3>
+<hr/>
+<p align="center">{{ request.user}} ,您已经注册成功，<span id="sp_send_mail" name="sp_send_mail">
+	<img id="sending_mail" style="display: none;" src="{% static 'accounts/imgs/loading.gif' %}" />
+	<a id="send_fail" onclick="send_mail();" >亲，快来发送邮件激活吧</a>
+	<a id="send_fail_two" style="display:none;" onclick="send_mail();" >发送邮件失败，亲10秒钟后再发送邮件激活吧</a>
+	<a id="send_success" style="display:none;" target="_blank" href="http://www.{{ request.user.email }}/">前去激活</a>
+	</span>
+</p>
+<p align="center"><a href="/procedure_article/init/">随便逛逛</a></p>
+<p align="center"><small>{{ error_messages }}</small></p>
+<script src="{% static 'accounts/js/accounts.js' %}"></script>
+
+{% endblock %}

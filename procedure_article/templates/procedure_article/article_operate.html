@@ -1,0 +1,16 @@
+{% extends 'procedure_article/article_base.html '%}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% crispy form  form.helper 'bootstrap3' %}
+{% block main %}
+<h4 align="center"> 编写文章 </h4>
+<hr />
+{% crispy form %} 
+<script type="text/javascript" src="{% static 'procedure_article/tinymce/js/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript">
+	tinymce.init({
+		selector : "textarea"
+	}); 
+</script>
+{% endblock %}
+

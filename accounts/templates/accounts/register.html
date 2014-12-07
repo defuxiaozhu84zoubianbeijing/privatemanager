@@ -1,0 +1,13 @@
+{% extends 'accounts/accounts_base.html'%}
+{% load crispy_forms_tags %}
+
+{% block main %}
+<h3 align="center">
+	用户注册
+</h3>
+<hr/>
+{% crispy form  form.helper 'bootstrap3' %}
+<h4 align="center"><b style="color: red;">{{ error_messages }}</b></h4>
+
+
+{% endblock %}

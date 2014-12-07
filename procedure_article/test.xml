@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<choice id="1">python</choice>
+	<choice id="2">mysql</choice>
+	<choice id="3">oracle</choice>
+	<choice id="4">sqlserver</choice>
+	<choice id="5">jquery</choice>
+	<choice id="6">django</choice>
+	<choice id="7">apache</choice>
+	<choice id="8">数据结构</choice>
+	<choice id="9">SVN</choice>
+	<choice id="10">Git</choice>
+</root>

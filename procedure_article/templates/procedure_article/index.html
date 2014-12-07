@@ -1,0 +1,36 @@
+{% extends 'procedure_article/article_base.html '%}
+{% load staticfiles %}
+{% block main %}
+{% load pagination_tags %}
+{% autopaginate articles 10 %}
+<h4>文章列表</h4>
+<hr />
+<div>
+	<div >
+		{% for article in articles %}
+		<div class="media">
+			<a class="media-left" href="#"> 
+				<img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'procedure_article/imgs/python.jpg'%}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
+			<div class="media-body">
+				<h3 class="media-heading"><a href="/procedure_article/articles/{{ article.id }}/detail/">{{ article.title }}</a></h3>
+				<p>&nbsp;</p>
+				<p>
+					{{ article.jianjie }} &nbsp;&nbsp;<a href="/procedure_article/articles/{{ article.id }}/detail/">....更多</a>
+				</p>
+				<p>
+					类别 ： &nbsp;&nbsp;<a href="/procedure_article/articles/query/type/{{ article.type.id }}/">{{ article.type }}</a> &nbsp;&nbsp; 关键字 : &nbsp;&nbsp; 
+					{% for k in article.keyword.split %}
+					<a href="/procedure_article/articles/query/keyword/{{ k }}/"><span class="badge">{{ k }}</span></a>
+					{% endfor %}
+				</p>
+					{% if perms.procedure_article.change_article %}
+					<a style="float: left;" class="btn btn-success" role="button" href="/procedure_article/articles/{{article.id}}/update">修改</a>
+					{% endif %}
+			</div>
+		</div>
+		<hr />
+		{% endfor %}
+	</div>
+</div>
+{% paginate %}
+{% endblock %}
