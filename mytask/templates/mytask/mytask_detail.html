@@ -1,0 +1,69 @@
+{% extends 'mytask/mytask_base.html '%}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block main %}
+<!--article  -->
+<h2 align="center"> {{ task.name }} </h2><h5 style="float: right;">
+<hr />
+<h5 style="float: left;">类别 ： &nbsp;&nbsp;<a href="/mytask/tasks/query/type/{{ task.type.id }}/">{{ task.type }}</a> &nbsp;&nbsp; 任务级别 &nbsp;&nbsp;<a href="/mytask/tasks/query/level/{{ task.level }}/"><span class="badge">{{ task.level }}</span></a><a  href="/mytask/tasks/{{ task.id }}/update/">修改</a></h5><h5 style="float: right;">{{ task.publisher }} 于 {{ task.pubdate|date:"Y-m-d"}}&nbsp;发布 </h5>
+<p>
+	&nbsp;&nbsp;
+</p>
+<p>
+	&nbsp;&nbsp;
+</p>
+<div id="article_detail" >
+	{{task.content|safe}}
+</div>
+<p>
+	&nbsp;&nbsp;
+</p>
+<p>
+	&nbsp;&nbsp;
+</p>
+<hr/>
+<!-- Comment -->
+<div id="comment">
+	<div id="lytypouter" data-typ="code">
+		<div id="comouter" class="ly">
+			<div class="inner">
+				<div class="title">
+					<h5>我的思路</h5>
+				</div>
+				{% for c in comments %}
+				<div class="conm">
+					<div class="lyinfo">
+						<div class="txj"></div>
+						<div class="tx">
+							<a href="/mem/20084" target="_blank"><img class="rotate" src="http://assets.jq22.com/mem/ed4210fa-6ffb-11e4-8b29-00163e001348.jpg"></a>
+						</div>
+						<div class="lyi">
+							<dd>
+								<a class="jg20 zbl" href="/mem/20084" target="_blank">{{ c.publisher }}</a>
+							</dd>
+							<dt>
+								<span class="jg20r">发表时间：{{ c.pubdate|date:"D d M Y"}} {{ c.pubdate|time:"H:i" }} </span>
+								<span><a href = "/mytask/tasks/{{ task.id }}/comments/{{ c.id }}/delete/">删除</a></span>
+							</dt>
+
+						</div>
+						<ul>
+							{{ c.content|safe }}
+						</ul>
+					</div>
+				</div>
+				{% endfor %}
+				<hr />
+			</div>
+		</div>
+
+	</div>
+
+</div> {% crispy form %} <script type="text/javascript" src="{% static 'mytask/js/tinymce/js/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript">
+	tinymce.init({
+		selector : "textarea"
+	}); 
+</script>
+<link rel="stylesheet"  href="{% static 'mytask/css/comment.css' %}" >
+{% endblock %} 

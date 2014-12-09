@@ -85,7 +85,7 @@ def _opreate(request , instance):
             article = form.save(commit=False)
             article.keyword = keyword_str
             article.save()
-            LOG.debug(request.user.__unicode__() + ': 操作' + article.title + ' 成功')
+            LOG.debug(request.user.__unicode__() + u': 操作' + article.title + u'成功')
             return HttpResponseRedirect('/procedure_article/init/')
     else :
         form = ArticleForm(instance=instance) 
@@ -94,7 +94,7 @@ def _opreate(request , instance):
 # 添加文章
 def add(request):
     if request.user.has_perm(const.PERMESSION_ADD_ARTICLE) :
-        LOG.debug(request.user.__unicode__() + ': 添加文章 ')
+        LOG.debug(request.user.__unicode__() + u': 添加文章 ')
         return _opreate(request , None)
     else :
         return HttpResponseRedirect('/procedure_article/init/')
@@ -102,7 +102,7 @@ def add(request):
 def update(request , article_id):
     if request.user.has_perm(const.PERMESSION_CHANGE_ARTICLE) :
         article = Article.objects.get(pk=article_id)
-        LOG.debug(request.user.__unicode__() + ': 修改文章')
+        LOG.debug(request.user.__unicode__() + u': 修改文章')
         return _opreate(request , article)
     else :
         return HttpResponseRedirect('/procedure_article/init/')
@@ -155,11 +155,11 @@ def _op_comment(request , article , article_pre, article_next , comments , type_
                 comment.article = article
                 comment.publishdate = datetime.now()
                 comment.save() 
-                LOG.debug(request.user.__unicode__() + ': 发表评论 成功')
+                LOG.debug(request.user.__unicode__() + u': 发表评论 成功')
                 return HttpResponseRedirect('/procedure_article/articles/' + str(article.id) + '/detail/') 
             else :
                 # 用户没登陆，则跳转到登陆页面
-                LOG.debug(request.user.__unicode__() + ': 没有登录，不能发表评论')
+                LOG.debug(request.user.__unicode__() + u': 没有登录，不能发表评论')
                 return HttpResponseRedirect('/accounts/login/')
     else:
         form = CommentForm()
@@ -171,7 +171,7 @@ def del_comment(request , article_id , comment_id):
         comment = get_object_or_404(Comment , pk=comment_id)
         if comment is not None :
             comment.delete()
-            LOG.debug(request.user.__unicode__() + ' : 删除评论 成功')
+            LOG.debug(request.user.__unicode__() + u' : 删除评论 成功')
     return HttpResponseRedirect('/procedure_article/articles/' + article_id + '/detail/')
 
 
@@ -204,22 +204,22 @@ def _get_options(params , _set):
            '_type' : 'column' ,
            '_set' : _set,
            '_categories' : 'type__name',
-           '_terms_name' : '发布数量',
-           '_terms_name_list' : ['发布数量'],
+           '_terms_name' : u'发布数量',
+           '_terms_name_list' : [u'发布数量'],
            '_terms_val'  : Count('id'),
-           '_chart_text' : '根据文章类别统计发布数量' ,
-           '_x_axis_text' : '类别' ,
+           '_chart_text' : u'根据文章类别统计发布数量' ,
+           '_x_axis_text' : u'类别' ,
        }
     elif params == 'line' :
         options = {
            '_type' : 'line' ,
            '_set' : _set,
            '_categories' : 'publishdate',
-           '_terms_name' : '发布数量',
-           '_terms_name_list' : ['发布数量'],
+           '_terms_name' : u'发布数量',
+           '_terms_name_list' : [u'发布数量'],
            '_terms_val'  : Count('id'),
-           '_chart_text' : '根据发布日期统计发布数量' ,
-           '_x_axis_text' : '发布日期' ,
+           '_chart_text' : u'根据发布日期统计发布数量' ,
+           '_x_axis_text' : u'发布日期' ,
        }
     return options 
         

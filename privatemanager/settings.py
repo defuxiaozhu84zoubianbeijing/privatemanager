@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'procedure_article',
     'common',
     'accounts',
+    'mytask' ,
 )
 
 MIDDLEWARE_CLASSES = (

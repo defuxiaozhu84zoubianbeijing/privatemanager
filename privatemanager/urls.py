@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('accounts.urls')),
     url(r'^common/', include('common.urls')),
     url(r'^procedure_article/', include('procedure_article.urls')),
+    url(r'^mytask/', include('mytask.urls')),
     
 )

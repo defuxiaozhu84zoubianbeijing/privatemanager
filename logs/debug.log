@@ -464,3 +464,50 @@ DEBUG 2014-12-09 09:47:00 views 4056 3580 wangxin: 添加文章
 DEBUG 2014-12-09 09:56:55 views 988 1200 wangxin: 修改文章
 DEBUG 2014-12-09 09:57:26 views 988 6392 wangxin: 修改文章
 DEBUG 2014-12-09 09:57:26 views 988 6392 wangxin: 操作git学习系列之 版本回退 成功
+DEBUG 2014-12-09 10:48:04 views 988 5364 wangxin: 添加文章 
+DEBUG 2014-12-09 10:50:55 views 988 6268 wangxin: 添加文章 
+DEBUG 2014-12-09 10:50:55 views 988 6268 wangxin: 操作git学习系列之 如何删除远程分支(master分支) 成功
+DEBUG 2014-12-09 10:52:04 views 988 3056 wangxin: 发表评论 成功
+DEBUG 2014-12-09 10:52:38 views 988 5920 wangxin: 发表评论 成功
+DEBUG 2014-12-09 10:55:06 views 988 1376 wangxin: 发表评论 成功
+DEBUG 2014-12-09 10:57:52 views 988 6372 wangxin: 发表评论 成功
+DEBUG 2014-12-09 11:14:35 views 1412 5136 wangxin: 修改文章
+DEBUG 2014-12-09 11:18:55 views 3904 5416 wangxin: 修改文章
+DEBUG 2014-12-09 11:21:24 views 6184 6516 wangxin: 修改文章
+DEBUG 2014-12-09 11:30:05 views 6184 2720 wangxin: 添加文章 
+DEBUG 2014-12-09 11:35:45 views 6184 988 wangxin:注销
+DEBUG 2014-12-09 11:49:01 views 5840 5876 AnonymousUser:找回密码启动
+DEBUG 2014-12-09 11:53:12 views 4648 6452 wangxin:登陆成功
+DEBUG 2014-12-09 11:53:16 views 4648 6200 wangxin: 添加文章 
+DEBUG 2014-12-09 11:53:24 views 4648 5504 wangxin:注销
+DEBUG 2014-12-09 12:01:11 views 5868 3352 AnonymousUser:注册成功
+DEBUG 2014-12-09 12:02:58 views 5868 6504 lisi:注销
+DEBUG 2014-12-09 12:03:14 views 5868 6008 wangxin:登陆成功
+DEBUG 2014-12-09 12:03:35 views 5868 7132 wangxin:注销
+DEBUG 2014-12-09 12:03:44 views 5868 6072 wangxin:登陆成功
+DEBUG 2014-12-09 12:03:58 views 5868 3288 wangxin: 添加文章 
+DEBUG 2014-12-09 12:07:26 views 5868 6292 wangxin: 添加文章 
+DEBUG 2014-12-09 12:07:26 views 5868 6292 wangxin: 操作日程记录---2014-12-09成功
+DEBUG 2014-12-09 12:14:36 views 5868 7020 wangxin: 发表评论 成功
+DEBUG 2014-12-09 12:18:02 views 5868 6980 wangxin: 发表评论 成功
+DEBUG 2014-12-09 12:18:57 views 5868 3284 wangxin: 修改文章
+DEBUG 2014-12-09 12:20:18 views 5868 6812 wangxin: 修改文章
+DEBUG 2014-12-09 12:20:18 views 5868 6812 wangxin: 操作日程记录---2014-12-09成功
+DEBUG 2014-12-09 14:12:39 views 6040 1592 wangxin: 发表评论 成功
+DEBUG 2014-12-09 19:09:47 views 4440 5272 wangxin: 修改文章
+DEBUG 2014-12-09 19:10:00 views 4440 5960 wangxin: 修改文章
+DEBUG 2014-12-09 19:10:00 views 4440 5960 wangxin: 操作django学习系列之 在Django中实现验证码(转帖)成功
+DEBUG 2014-12-09 19:21:34 views 912 1948 wangxin:注销
+DEBUG 2014-12-09 19:23:47 views 2064 5780 AnonymousUser:登陆失败:用户名或密码输入错误，请重新输入
+DEBUG 2014-12-09 19:23:59 views 2064 5192 wangxin:登陆成功
+DEBUG 2014-12-09 19:28:55 views 1576 2032 wangxin:注销
+DEBUG 2014-12-09 19:29:05 views 1576 5732 wangxin:登陆成功
+DEBUG 2014-12-09 19:30:38 views 1576 1500 wangxin:注销
+DEBUG 2014-12-09 19:30:57 views 1576 5996 AnonymousUser:登陆失败:用户名或密码输入错误，请重新输入
+DEBUG 2014-12-09 19:31:05 views 1576 5536 AnonymousUser:登陆失败:用户名或密码输入错误，请重新输入
+DEBUG 2014-12-09 19:31:14 views 1576 5220 zhangsan:登陆成功
+DEBUG 2014-12-09 19:32:47 views 1576 1996 zhangsan:注销
+DEBUG 2014-12-09 19:32:59 views 1576 3892 AnonymousUser:登陆失败:用户名或密码输入错误，请重新输入
+DEBUG 2014-12-09 19:33:05 views 1576 5680 AnonymousUser:登陆失败:用户名或密码输入错误，请重新输入
+DEBUG 2014-12-09 19:33:16 views 1576 1552 AnonymousUser:登陆失败:用户名或密码输入错误，请重新输入
+DEBUG 2014-12-09 19:33:31 views 1576 5768 wangxin:登陆成功

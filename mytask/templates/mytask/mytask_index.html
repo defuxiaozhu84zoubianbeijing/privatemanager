@@ -1,0 +1,31 @@
+{% extends 'mytask/mytask_base.html '%}
+{% load staticfiles %}
+{% block main %}
+{% load pagination_tags %}
+{% autopaginate tasks 10 %}
+<h4>任务列表</h4>
+<hr />
+<div>
+	<div >
+		{% for task in tasks %}
+		<div class="media">
+			<a style="float: right;" href="/mytask/tasks/query/{{ task.pubdate}}/">{{ task.pubdate|date:'d/m/Y'}}</a>
+			<a class="media-left" href="/mytask/tasks/{{ task.id }}/detail/"> 
+				<img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'mytask/imgs/task.jpg'%}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
+			<div class="media-body">
+				<p>
+					<h4 class="media-heading"><a href="/mytask/tasks/{{ task.id }}/detail/">{{ task.name }}</a></h4>
+					类别 ： &nbsp;&nbsp;<a href="/mytask/tasks/query/type/{{ task.type.id }}/">{{ task.type }}</a> &nbsp;&nbsp; 任务级别: &nbsp;&nbsp; 
+					<a href="/mytask/tasks/query/level/{{ task.level}}/"><span class="badge">{{ task.level }}</span></a>&nbsp;
+					 任务进度: &nbsp;&nbsp;<b><small>{{ task.progress}} %</small></b> 
+
+				</p>
+			</div>
+			<a style="float: right;" href="/mytask/tasks/{{ task.id}}/update/">修改</a>
+		</div>
+		<hr />
+		{% endfor %}
+	</div>
+</div>
+{% paginate %}
+{% endblock %}

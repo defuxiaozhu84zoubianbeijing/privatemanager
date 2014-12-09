@@ -1,0 +1,15 @@
+{% extends 'mytask/mytask_base.html '%}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block main %}
+<h4 align="center"> 添加任務 </h4>
+<hr />
+{% crispy form %} 
+<script type="text/javascript" src="{% static 'mytask/js/tinymce/js/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript">
+	tinymce.init({
+		selector : "textarea"
+	}); 
+</script>
+{% endblock %}
+

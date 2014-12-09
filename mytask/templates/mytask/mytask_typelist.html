@@ -1,0 +1,19 @@
+
+<div class="col-sm-3 col-md-2 sidebar">
+	<ul id="dropdown">
+		<li class="nav nav-sidebar">
+			<a class="active" href="#">操作</a>
+			<ul class="nav nav-sidebar">
+				<li>
+					<a href="/mytask/add/">添加任务</a>
+				</li>
+			</ul>
+		</li>
+		{% for t in type_set %}
+		<li class="nav nav-sidebar">
+			<a class="active" href="#">{{ t.name }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+

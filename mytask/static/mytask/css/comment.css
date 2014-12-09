@@ -1,0 +1,288 @@
+@charset "UTF-8";/* basic scrollbar styling */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* line 18, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.right {
+  float: right;
+}
+
+/* line 19, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.hide {
+  display: none;
+}
+
+/* line 20, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 21, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+a:visited, a:link {
+  color: #60b7e1;
+}
+
+/* line 22, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+a:active, a:hover {
+  color: #666;
+}
+
+/* line 23, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+dd {
+  float: left;
+}
+
+/* line 24, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+dt {
+  float: right;
+}
+
+/* line 25, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+form {
+  display: inline-block;
+}
+
+/* line 26, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+
+
+/* line 29, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.txt {
+  width: 300px;
+  height: 25px;
+  padding-left: 5px;
+  box-shadow: inset 1px 1px 3px #EAEAEA;
+  border: 1px solid #D7D7D7;
+  font-family: '΢���ź�';
+}
+
+/* line 30, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.txt.area {
+  height: 100px;
+}
+
+/* line 31, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+form {
+  width: 100%;
+}
+
+/* line 32, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.txt-center {
+  text-align: center;
+}
+
+/* line 33, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.rotate {
+  -webkit-transition: 1s ease all;
+  -moz-transition: 1s ease all;
+}
+
+/* line 38, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.rotate:hover {
+  -webkit-transform: rotate(-190deg);
+  -moz-transform: rotate(-190deg);
+}
+
+
+/* line 53, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.msg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  z-index: 2000;
+  background-color: #f89500;
+  padding: 10px;
+  color: #FFF;
+  border: #FFF 3px solid;
+  font-size: 15px;
+}
+
+/* line 54, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.error_msg {
+  background-color: Red;
+}
+
+/* line 55, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+  background-color: #000;
+  FILTER: ALPHA(opacity=60);
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+  display: none;
+}
+
+/* line 57, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+td {
+  border-bottom: #EEE 1px solid;
+}
+
+/* line 58, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+th {
+  border-bottom: #AAA 2px solid;
+  text-align: left;
+}
+
+/* line 59, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+th, td {
+  height: 30px;
+}
+
+
+
+
+
+
+
+
+/*���Կ�*/
+/* line 171, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.lyeditor {
+  position: relative;
+  border: 1px solid #DDD;
+  margin: 17px auto;
+}
+
+/* line 172, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.lyeditor ul {
+  display: block;
+  width: 100%;
+  position: relative;
+  background: #ecf0f1;
+  border-bottom: 1px solid #d7e0e2;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  line-height: 10px;
+}
+
+/* line 173, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.lyeditor li {
+  cursor: pointer;
+  height: 35px;
+  display: inline-block;
+  line-height: 35px;
+  padding: 0 10px;
+}
+
+/* line 174, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.lyeditor li:hover {
+  background-color: #FFF;
+}
+
+/* line 175, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.lyeditor li.icon {
+  /*background-image: url("editor_icon.png");*/
+  width: 35px;
+  background-repeat: no-repeat;
+  padding: 0;
+}
+
+/* line 176, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.lyeditor .i1 {
+  border-right: 1px solid #d7e0e2;
+}
+
+/* line 177, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.lyeditor .i2 {
+  background-position: 5px -170px;
+  border-left: 1px solid #d7e0e2;
+  float: right;
+}
+
+/* line 178, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.lyeditor .cone {
+  min-height: 150px;
+  border-style: none;
+  outline: none;
+  width: 99%;
+  resize: none;
+  height: 100%;
+}
+
+/* line 179, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.lyeditor .lyinner {
+  padding: 10px;
+}
+
+/* line 181, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.fullscreen {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  z-index: 99999;
+  background-color: #FFF;
+}
+
+/* line 182, /mnt/jq/app/assets/stylesheets/layout.css.scss */
+.fullscreen .i2 {
+  background-position: 5px -145px;
+}
+
+/****���� �ظ�*******/
+.nologin{border: #EEE 1px solid;text-align: center;height: 100px;line-height: 100px;font-size: 14px; margin-top:10px; background-color: #fbfafa}
+.ly{margin:20px 0;}
+.ly .title{margin-bottom: 20px;}
+/*.ly .inner{padding: 20px;}*/
+.ly .dialog{padding-left: 80px}
+.ly .conm{padding-left: 100px; word-break: break-all;}
+.ly .lyinfo{ position: relative; height: auto; padding: 5px;  margin-bottom: 30px; font-size: 14px; border: 1px solid #EAEAEA; }
+.ly .tx{position:absolute; top:0px; left:-100px; height: 75px; width: 75px; z-index:20;}
+.ly .tx img{height: 75px; width: 75px;border: #EEE 1px solid;padding: 1px; border-radius: 100%}
+.ly .lyi{ width: 100%; background-color: #f1f5f8; height: 34px; line-height: 34px; color: #b0b0b0; font-size: 14px; }
+.ly .lyi dd{padding-left: 10px;}
+.ly .lyi dt{padding-right: 10px;}
+.ly .lyinfo ul{ padding: 30px; }
+.ly .txj{ position: absolute; top: 20px; left: -14px; height: 19px; width: 14px; }
+.ly .lytj{ width: 80px; color: #bccede; display: block;  text-align: center; float: left;}
+.ly .lytxt,.lytxt2{ height: 30px; width: 230px; line-height: 30px; padding-left: 7px; border: 1px solid #dae2e4; }
+.ly .lytxt2{ height: 160px; width: 100%; }
+.ly .lybut { height: auto;  }
+.ly .tjbut { height: 36px; width: 140px; line-height: 36px; text-align: center; background-color: #09C; border: none; color: #FFF; font-size: 14px;-webkit-transition: all 0.2s ease-in; -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.5s ease-in; transition: all 0.5s ease-in;}
+.ly .tjbut:hover {background-color: #7c54ad;}
+.ly .batx {width: 45px;height: 45px;}
+.ly .jg20r{font-size: 12px;}
+
+
+
+
+
+
+

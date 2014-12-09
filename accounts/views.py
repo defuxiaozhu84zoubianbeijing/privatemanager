@@ -35,17 +35,17 @@ def login(request):
             if user is not None :
                 if user.is_active:
                     user_login(request, user)
-                    logger.debug(request.user.__unicode__() + ':登陆成功')
+                    logger.debug(request.user.__unicode__() + u':登陆成功')
                     return HttpResponseRedirect('/procedure_article/init/')
                 else :
-                    logger.debug('登陆失败:用户还没有注册')
-                    error_messages = '用户还没有注册'
+                    logger.debug(u'登陆失败:用户还没有注册')
+                    error_messages = u'用户还没有注册'
             else :
-                logger.debug(request.user.__unicode__() + ':登陆失败:用户名或密码输入错误，请重新输入')
-                error_messages = '用户名或密码输入错误，请重新输入'
+                logger.debug(request.user.__unicode__() + u':登陆失败:用户名或密码输入错误，请重新输入')
+                error_messages = u'用户名或密码输入错误，请重新输入'
         except Exception as er :
             form.is_valid()
-            logger.debug(request.user.__unicode__() + ':登录失败'.join(str(er)))
+            logger.debug(request.user.__unicode__() + u':登录失败'.join(str(er)))
             pass
     else : 
         form = loginForm()
@@ -53,7 +53,7 @@ def login(request):
 
 # 注销
 def logout(request):
-    logger.debug(request.user.__unicode__() + ':注销')
+    logger.debug(request.user.__unicode__() + u':注销')
     user_logout(request)
     return HttpResponseRedirect('/procedure_article/init/')
 
@@ -81,17 +81,17 @@ def register(request):
             user = authenticate(username=_username , password=_password)
             if user is not None :
                 if user.is_active:
-                    logger.debug(request.user.__unicode__() + ':注册成功')
+                    logger.debug(request.user.__unicode__() + u':注册成功')
                     user_login(request, user)
                     return HttpResponseRedirect('/accounts/get_active_code/')
                 else :
-                    logger.debug(request.user.__unicode__() + ':注册失败:用户没有激活，请到邮箱激活！')
-                    error_messages = '用户没有激活，请到邮箱激活！'
+                    logger.debug(request.user.__unicode__() + u':注册失败:用户没有激活，请到邮箱激活！')
+                    error_messages = u'用户没有激活，请到邮箱激活！'
             else:
-                logger.debug(request.user.__unicode__() + ':注册失败:请重新注册')
-                error_messages = '请重新注册'
+                logger.debug(request.user.__unicode__() + u':注册失败:请重新注册')
+                error_messages = u'请重新注册'
         else : 
-            error_messages = '请重新注册'
+            error_messages = u'请重新注册'
     else :
         form = registerForm()
     return render(request , 'accounts/register.html' , locals())
@@ -142,7 +142,7 @@ def getpwd(request):
                         # 修改密码
                         flag = _pwd_change(request , const.ORIGINAL_PWD , _user)
                         if flag == False :
-                            error_messages = '用户邮箱输入错误，请重试'
+                            error_messages = u'用户邮箱输入错误，请重试'
                         else:  
                             # 发送邮件
                             option = {
@@ -158,16 +158,16 @@ def getpwd(request):
                                 logger.debug(request.user.__unicode__() + ',找回密码成功 ')  
                                 return HttpResponseRedirect('/procedure_article/init/')
                             else : 
-                                logger.debug(request.user.__unicode__() + ',发送邮件失败')  
-                                error_messages = '您输入的邮箱有误，请重新检查'
+                                logger.debug(request.user.__unicode__() + u',发送邮件失败')  
+                                error_messages = u'您输入的邮箱有误，请重新检查'
                     else :
-                        logger.debug(request.user.__unicode__() + ',找回密码失败，找回问题回答错误') 
-                        error_messages = '答案错误，请重试'
+                        logger.debug(request.user.__unicode__() + u',找回密码失败，找回问题回答错误') 
+                        error_messages = u'答案错误，请重试'
                 else :
-                    logger.debug(request.user.__unicode__() + ',找回密码失败，没有找到注册邮箱，请检查输入') 
-                    error_messages = '没有找到注册邮箱，请检查输入'
+                    logger.debug(request.user.__unicode__() + u',找回密码失败，没有找到注册邮箱，请检查输入') 
+                    error_messages = u'没有找到注册邮箱，请检查输入'
             except Exception as er : 
-                logger.debug(request.user.__unicode__() + ' : 错误原因为' + str(er)) 
+                logger.debug(request.user.__unicode__() + u' : 错误原因为' + str(er)) 
                 error_messages = str(er) 
     else :
         form = PwdHelperForm()
@@ -186,7 +186,7 @@ def password_change(request):
             if flag :
                 return HttpResponseRedirect('/procedure_article/init/')
         else :
-            error_messages = '用户输入错误'
+            error_messages = u'用户输入错误'
     else :
         form = PassWordChangeForm()
     return render(request , 'accounts/passwordChange.html' , locals())
