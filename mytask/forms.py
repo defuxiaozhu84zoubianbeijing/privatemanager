@@ -9,8 +9,8 @@ from crispy_forms.bootstrap import InlineCheckboxes, FormActions
 
 class TaskForm(forms.ModelForm):
     LEVEL_CHOICES = (
-        ('搁置', '搁置'), ('正常', '正常'),
-        ('紧急', '紧急'), ('立刻', '立刻'),
+        ('delay', 'delay'), ('normal', 'normal'),
+        ('quick', 'quick'), ('now', 'now'),
     )
     
     PROGRESS_CHOICES = (

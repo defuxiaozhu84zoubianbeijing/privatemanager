@@ -3,13 +3,15 @@
 {% block main %}
 {% load pagination_tags %}
 {% autopaginate tasks 10 %}
-<h4>任务列表</h4>
+<h4>任务列表</h4><a style="float:right;" href="/mytask/index/">显示全部</a>
 <hr />
 <div>
 	<div >
 		{% for task in tasks %}
 		<div class="media">
-			<a style="float: right;" href="/mytask/tasks/query/{{ task.pubdate}}/">{{ task.pubdate|date:'d/m/Y'}}</a>
+			<a style="float: right;" href="/mytask/tasks/query/pubdate/day/{{ task.pubdate|date:'d' }}/">{{ task.pubdate|date:'d'}} 日</a> 
+			<a style="float: right;" href="/mytask/tasks/query/pubdate/month/{{ task.pubdate|date:'m' }}/">{{ task.pubdate|date:'m'}} 月 </a> 
+			<a style="float: right;" href="/mytask/tasks/query/pubdate/year/{{ task.pubdate|date:'Y' }}/">{{ task.pubdate|date:'Y'}} 年 </a> 
 			<a class="media-left" href="/mytask/tasks/{{ task.id }}/detail/"> 
 				<img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'mytask/imgs/task.jpg'%}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
 			<div class="media-body">
@@ -17,13 +19,19 @@
 					<h4 class="media-heading"><a href="/mytask/tasks/{{ task.id }}/detail/">{{ task.name }}</a></h4>
 					类别 ： &nbsp;&nbsp;<a href="/mytask/tasks/query/type/{{ task.type.id }}/">{{ task.type }}</a> &nbsp;&nbsp; 任务级别: &nbsp;&nbsp; 
 					<a href="/mytask/tasks/query/level/{{ task.level}}/"><span class="badge">{{ task.level }}</span></a>&nbsp;
-					 任务进度: &nbsp;&nbsp;<b><small>{{ task.progress}} %</small></b> 
+					 任务进度: &nbsp;&nbsp;<b><small>{{ task.progress}} %</small></b> &nbsp;&nbsp;
+					 {% if task.is_fixed %}<b><small><a href="/mytask/tasks/query/isfix/{{ task.is_fixed }}/">已结束</a></small></b>
+					 {% else %}<b><small><a href="/mytask/tasks/query/isfix/{{ task.is_fixed }}/">未结束</a></small></b>{% endif %}
 
 				</p>
 			</div>
 			<a style="float: right;" href="/mytask/tasks/{{ task.id}}/update/">修改</a>
 		</div>
 		<hr />
+		{% empty %}
+		<div style="width: 70%;height: 350px;">
+		<h4 align="center">暂时没有任务哦,<small><a href="/mytask/add/">前去添加任务吧</a></small></h4>
+		</div>
 		{% endfor %}
 	</div>
 </div>

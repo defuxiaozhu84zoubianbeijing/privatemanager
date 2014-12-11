@@ -511,3 +511,13 @@ DEBUG 2014-12-09 19:32:59 views 1576 3892 AnonymousUser:登陆失败:用户名�
 DEBUG 2014-12-09 19:33:05 views 1576 5680 AnonymousUser:登陆失败:用户名或密码输入错误，请重新输入
 DEBUG 2014-12-09 19:33:16 views 1576 1552 AnonymousUser:登陆失败:用户名或密码输入错误，请重新输入
 DEBUG 2014-12-09 19:33:31 views 1576 5768 wangxin:登陆成功
+DEBUG 2014-12-09 20:20:03 views 3696 3952 wangxin: 发表评论 成功
+DEBUG 2014-12-11 09:45:51 views 2264 3744 wangxin: 添加文章 
+DEBUG 2014-12-11 09:50:17 views 2264 5592 wangxin: 添加文章 
+DEBUG 2014-12-11 09:50:33 views 2264 2184 wangxin: 添加文章 
+DEBUG 2014-12-11 09:50:36 views 2264 2184 wangxin: 操作日程记录---2014-12-11成功
+DEBUG 2014-12-11 09:51:46 views 2264 6136 wangxin: 发表评论 成功
+DEBUG 2014-12-11 11:57:10 views 2764 5492 wangxin: 添加文章 
+DEBUG 2014-12-11 11:58:31 views 2764 5136 wangxin: 添加文章 
+DEBUG 2014-12-11 11:58:31 views 2764 5136 wangxin: 操作django学习系列之 Django中如何使用django-celery完成异步任务成功
+DEBUG 2014-12-11 12:00:39 views 2764 4488 wangxin: 发表评论 成功
