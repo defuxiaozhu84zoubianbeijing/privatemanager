@@ -1,7 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http.response import HttpResponseRedirect, HttpResponse
 from accounts.forms import loginForm, registerForm, PwdHelperForm, \
     PassWordChangeForm
@@ -156,7 +159,7 @@ def getpwd(request):
                             flag = utils.send_multiple_email(options)
                             if flag :
                                 logger.debug(request.user.__unicode__() + ',找回密码成功 ')  
-                                return HttpResponseRedirect('/procedure_article/init/')
+                                error_messages = u'找回密码成功，前往邮箱查看新密码。登陆！'
                             else : 
                                 logger.debug(request.user.__unicode__() + u',发送邮件失败')  
                                 error_messages = u'您输入的邮箱有误，请重新检查'

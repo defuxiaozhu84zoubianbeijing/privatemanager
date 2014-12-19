@@ -1,5 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 from procedure_article.models import Type , Article
 from xml.etree import ElementTree
 from chartit import PivotDataPool, PivotChart 

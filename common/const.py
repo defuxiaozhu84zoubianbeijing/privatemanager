@@ -1,5 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 
 '''
 存储privatemanager网站中使用的常量

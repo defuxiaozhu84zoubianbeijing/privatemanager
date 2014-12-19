@@ -1,6 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 from django.contrib.auth.models import User
 from django import forms
 from crispy_forms.bootstrap import  FormActions, PrependedText

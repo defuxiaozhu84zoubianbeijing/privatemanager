@@ -1,10 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 from procedure_article.models import Article
+
+
 
 # Create your models here.
 

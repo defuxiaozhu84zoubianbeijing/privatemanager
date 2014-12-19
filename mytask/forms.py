@@ -1,6 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 from django import forms
 from mytask.models import Task , Comment , Type
 from crispy_forms.helper import FormHelper

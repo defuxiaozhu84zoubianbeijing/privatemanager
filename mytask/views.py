@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 from django.shortcuts import render, get_object_or_404
 from django.http.response import HttpResponseRedirect

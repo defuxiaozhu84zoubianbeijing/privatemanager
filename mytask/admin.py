@@ -1,3 +1,7 @@
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 from django.contrib import admin
 from mytask.models import Task , Comment , Type
 
