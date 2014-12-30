@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^sendmail/$', views.sendmail , name='sendmail'),
     
     url(r'^login/$', views.login , name='login'),
+    url(r'^ssologin/$', views.ssologin , name='ssologin'),
     url(r'^logout/$', views.logout , name='logout'),
     url(r'^register/$', views.register , name='register'),
     url(r'^changepwd/$', views.password_change , name='password_change'),

@@ -1,10 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
+from random import random
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http.response import HttpResponseRedirect, HttpResponse
 from accounts.forms import loginForm, registerForm, PwdHelperForm, \
     PassWordChangeForm
@@ -16,15 +17,16 @@ from privatemanager import settings
 from common import const
 import logging
 import utils 
-from accounts.models import PwdHelper, PwdQuestion
+from accounts.models import PwdHelper, PwdQuestion, UserProfile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 
+# 导入duoshuo的API
+from duoshuo import DuoshuoAPI
+from privatemanager.settings import DUOSHUO_SECRET , DUOSHUO_SHORT_NAME
+
 # 添加logger
 logger = logging.getLogger(__name__) 
-
-
-# Create your views here.
 
 # 登陆
 def login(request):
@@ -54,6 +56,53 @@ def login(request):
         form = loginForm()
     return render(request , 'accounts/login.html' , locals())
 
+def ssologin(request):
+    # 获取duoshuo的code
+    code = request.GET.get('code')
+    api = DuoshuoAPI(short_name=DUOSHUO_SHORT_NAME, secret=DUOSHUO_SECRET)
+    response = api.get_token(code=code)
+    if response.has_key('user_key'):
+        # 此多说账号在本站已经注册过了，直接登录
+        user = User.objects.get(pk=int(response['user_key']))
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
+        user_login(request, user)
+    else: 
+        # 此多说账号在本站未注册，添加一个用户
+        response = api.users.profile(user_id=response['user_id'])['response']
+        username = response['name']
+        tmp_password = None 
+        if User.objects.filter(username=username).count():
+            user = User.objects.filter(username=username)[0]
+            # 保存用户信息
+            userprofile = UserProfile.objects.get(user=user)
+            userprofile.duoshuo_id = response['user_id']  # 把返回的多说ID存到profile
+            userprofile.avatar = response['avatar_url']
+            userprofile.save()
+            api = DuoshuoAPI(short_name=DUOSHUO_SHORT_NAME, secret=DUOSHUO_SECRET)
+            # 把本站用户导入多说，参看：http://dev.duoshuo.com/docs/51435552047fe92f490225de
+            response = api.users.imports(data={
+                'users[0][user_key]' : user.id,
+                'users[0][name]': user.username,
+                'users[0][email]': user.email,
+            })['response']
+            print response 
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+            user_login(request, user)
+        else : 
+            # 在多说和本地都没有注册
+            username = response['name']   
+            tmp_password = ''.join([random.choice('abcdefg&#%^*f') for i in range(8)])  # 随机长度8字符做密码
+            new_user = User.objects.create_user(username=username, email='user@163.com', password=tmp_password)  # 默认密码和邮箱，之后让用户修改
+            # 保存用户信息
+            userprofile = UserProfile.objects.get(user=new_user)
+            userprofile.duoshuo_id = response['user_id']  # 把返回的多说ID存到profile
+            userprofile.avatar = response['avatar_url']
+            userprofile.save()
+            # 用户登录
+            _user = authenticate(username=username, password=tmp_password)
+            user_login(request, _user)
+    return HttpResponseRedirect('/procedure_article/init/')
+
 # 注销
 def logout(request):
     logger.debug(request.user.__unicode__() + u':注销')
@@ -72,11 +121,22 @@ def register(request):
             _question_id = request.POST.get('question')
             _answer = request.POST.get('answer')
             _user = User.objects.create_user(_username , _email , _password)
-            # 保存找回密码问题
             try :
+                # 保存找回密码问题
                 _question = PwdQuestion.objects.get(pk=int(_question_id))
                 pwdHelper = PwdHelper(user=_user , question=_question , answer=_answer)
                 pwdHelper.save()
+                # 同步到多说
+                api = DuoshuoAPI(short_name=DUOSHUO_SHORT_NAME, secret=DUOSHUO_SECRET)
+                # 把本站用户导入多说，参看：http://dev.duoshuo.com/docs/51435552047fe92f490225de
+                response = api.users.imports(data={
+                    'users[0][user_key]' : _user.id,
+                    'users[0][name]': _username,
+                    'users[0][email]': _email,
+                })['response']
+                user_profile = UserProfile.objects.get(user=_user)
+                user_profile.duoshuo_id = int(response[str(_user.id)])
+                user_profile.save()
             except :
                 # 出现异常，删除用户，保证数据准确性
                 _user.delete()

@@ -40,6 +40,11 @@ footer p {
 	font-size:0.8571428571428571em; /* 12px/14px */
 }
 
+.badge:hover{
+	color:orange;
+}
+
+
 
 
 

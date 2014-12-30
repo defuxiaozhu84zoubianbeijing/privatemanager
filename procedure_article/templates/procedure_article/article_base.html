@@ -1,59 +1,121 @@
-
-
 {% extends 'common/base.html' %}
 {% load staticfiles %}
 {% block content %}
 <link rel="stylesheet"  href="{% static 'procedure_article/css/article_base.css' %}" >
-
-<div id="article" >
-	<div class="container-fluid">
-		<div class="col-sm-3 col-md-2 sidebar">
-			<ul id="dropdown">
-				{% if perms.procedure_article.add_article %}
-				<li class="nav nav-sidebar">
-					<a class="active" href="#">操作</a>
-					<ul class="nav nav-sidebar">
-						<li>
-							<a href="/procedure_article/add/">添加文章</a>
-						</li>
-					</ul>
+<div class="main">
+	<div class="row">
+		<div id="content" class="hfeed col-xs-14 col-sm-10 col-md-8 col-lg-8">
+			<ol class="breadcrumb">
+				<li>
+					<a href="/procedure_article/init/">首页</a>
 				</li>
-				{% endif %}
-				{% for t1 in type_level1_set %}
-				<li class="nav nav-sidebar">
-					<a class="active" href="#">{{ t1.name }}</a>
-					<ul class="nav nav-sidebar">
-						{% for t2 in type_level2_set.pop %}
+				<li>
+					<a href="#">Library</a>
+				</li>
+				<li class="active">
+					Data
+				</li>
+			</ol>
+			{% block main %}{% endblock %}
+		</div>
+		<div id="sidebar" class="col-xs-6 col-sm-5 col-md-4 col-lg-4">
+			<aside id="widget-welcome" class="widget panel panel-default">
+				<div class="panel-heading">
+					欢迎！
+				</div>
+				<div class="panel-body">
+					<p>
+						欢迎来到<a href="http://127.0.0.1:8000/procedure_article/init/">德芙小猪的博客</a>.如果您觉得这个博客还不错，可以从<a href="#">这里</a>下载源代码自定义自己的博客.
+					</p>
+				</div>
+			</aside>
+			<aside id="widget-categories" class="widget panel panel-default">
+				<div class="panel-heading">
+					类别
+				</div>
+				<ul class="category-root list-group">
+					{% for t2 in type_list %}
+					<li class="list-group-item">
+						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+						&nbsp;<a href="/procedure_article/articles/query/type/{{ t2.id }}/"
+						title="{{ t2.name }}" rel="tag category" >{{ t2.name }} </a>
+						&nbsp; <span class="label label-info" style="float: right;"> {{ t2.count  }}文章 </span>
+					</li>
+					{% endfor %}
+				</ul>
+			</aside>
+			<aside id="widget-recents" class="widget panel panel-default">
+				<div class="panel-heading">
+					最近日志
+				</div>
+				<ul class="list-group">
+
+					{% for article in article_new_set %}
+					<li class="list-group-item">
+						<span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>&nbsp;&nbsp; <a href="/procedure_article/articles/{{ article.id }}/detail/" title="{{ article.title }}" rel="bookmark">{{article.title}}</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</aside>
+			<aside id="widget-comments" class="widget panel panel-default">
+				<div class="panel-heading">
+					最近的评论
+				</div>
+				<div class="panel-body" id="recent-comments">
+					<ul class="ds-recent-comments" data-num-items="10" data-show-avatars="1" data-show-time="1" data-show-admin="1" data-excerpt-length="70"></ul>
+				</div>
+			</aside>
+			<aside id="widget-comments" class="widget panel panel-default">
+				<div class="panel-heading" >
+					最近的访客
+				</div>
+				<div class="panel-body" id="recent-comments">
+					<ul class="ds-recent-visitors"></ul>
+				</div>
+			</aside>
+			<aside id="widget-tags" class="widget panel panel-default">
+				<div class="panel-heading">
+					关键字
+				</div>
+				<div class="panel-body">
+					<ul class="list-inline tag-cloud">
+						{% for k in keyword_set %}
 						<li>
-							<a href="/procedure_article/articles/query/type/{{t2.id}}/">{{ t2.name }}</a>
+							<a href="/procedure_article/articles/query/keyword/{{ k}}/" title="{{ k }}"class="tag-1"
+							data-toggle="tooltip" data-placement="top"> <span class="badge">{{ k }}</span> </a>
 						</li>
 						{% endfor %}
 					</ul>
-				</li>
-				{% endfor %}
-			</ul>
+				</div>
+			</aside>
+			{% if perms.procedure_article.change_article %}
+			<aside id="widget-tags" class="widget panel panel-default">
+				<div class="panel-heading">
+				文章操作
+				</div>
+				<div class="panel-body">
+					<a href="/procedure_article/add/">添加文章</a>
+				</div>
+			</aside>
+			{% endif %}
 		</div>
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			{% block main %}{% endblock %}
-		</div>
-
 	</div>
-
 </div>
-<script type="text/javascript" src="{% static 'procedure_article/js/tendina.js' %}"></script>
 <script>
-	$(function() {
-		$("#dropdown").tendina({
-			animate : true,
-			speed : 500,
-			openCallback : function($clickedEl) {
-				console.log("1");
-			},
-			closeCallback : function($clickedEl) {
-				console.log("2");
-			}
-		});
-
-	}); 
+	var duoshuoQuery = {
+		short_name : "privatemanager",
+		sso : {
+			login : "http://127.0.0.1:8000/accounts/ssologin/", //替换为你自己的回调地址
+			logout : "http://127.0.0.1:8000/accounts/logout/"//替换为你自己的回调地址
+		}
+	};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';
+		ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})(); 
 </script>
 {% endblock %}

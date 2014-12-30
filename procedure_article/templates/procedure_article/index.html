@@ -6,26 +6,46 @@
 <h4>文章列表</h4>
 <hr />
 <div>
-	<div >
+	<div>
 		{% for article in articles %}
 		<div class="media">
-			<a class="media-left" href="#"> 
-				<img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'procedure_article/imgs/python.jpg'%}" data-holder-rendered="true" style="width: 64px; height: 64px;"> </a>
-			<div class="media-body">
+			<a class="media-left" href="#"> {% if article.type.name == "DJANGO学习" %} <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'common/imgs/django.jpg'%}"
+			data-holder-rendered="true" style="width: 64px; height: 64px;"> {% elif "python" in article.type.name|lower  %} <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'common/imgs/python.jpg'%}"
+			data-holder-rendered="true" style="width: 64px; height: 64px;"> {% elif article.type.name == "Git" %} <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'common/imgs/git.jpg'%}"
+			data-holder-rendered="true" style="width: 64px; height: 64px;"> {% elif article.type.name == "Jquery学习" %} <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'common/imgs/jquery.jpg'%}"
+			data-holder-rendered="true" style="width: 64px; height: 64px;"> {% elif article.type.name == "SVN" %} <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'common/imgs/svn.jpg'%}"
+			data-holder-rendered="true" style="width: 64px; height: 64px;"> {% elif article.type.name == "Apache" %} <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'common/imgs/apache.jpg'%}"
+			data-holder-rendered="true" style="width: 64px; height: 64px;"> {% elif article.type.name == "bootstrap模板学习" %} <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'common/imgs/bootstrap.jpg'%}"
+			data-holder-rendered="true" style="width: 64px; height: 64px;"> {% elif article.type.name == "MySQL" %} <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'common/imgs/mysql.jpg'%}"
+			data-holder-rendered="true" style="width: 64px; height: 64px;"> {% else %} <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{% static 'common/imgs/django.jpg'%}"
+			data-holder-rendered="true" style="width: 64px; height: 64px;"> {% endif %} </a>
+			<div class="media-body" style="width:800px;">
 				<h3 class="media-heading"><a href="/procedure_article/articles/{{ article.id }}/detail/">{{ article.title }}</a></h3>
-				<p>&nbsp;</p>
 				<p>
-					{{ article.jianjie }} &nbsp;&nbsp;<a href="/procedure_article/articles/{{ article.id }}/detail/">....更多</a>
+					&nbsp;
 				</p>
 				<p>
-					类别 ： &nbsp;&nbsp;<a href="/procedure_article/articles/query/type/{{ article.type.id }}/">{{ article.type }}</a> &nbsp;&nbsp; 关键字 : &nbsp;&nbsp; 
+					{{ article.jianjie }}&nbsp;&nbsp;.......
+					<span style="float: right;"><a href="/procedure_article/articles/{{ article.id }}/detail/">浏览更多</a></span>
+				</p>
+				<p>
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; <a href="/procedure_article/articles/query/author/{{article.author}}/" class="fn url nickname" rel="author"><small> <b>{{ article.author }}</b></small></a>
+					&nbsp;&nbsp;<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+					<time class="published" datetime="2014-12-29T10:03:45" pubdate="pubdate">
+						{{ article.publishdate|date:"Y-m-d"}}
+					</time>
+					&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp; <a href="/procedure_article/articles/query/type/{{ article.type.id }}/" rel="tag category"><small> <b>{{ article.type }}</b></small></a>&nbsp;
 					{% for k in article.keyword.split %}
-					<a href="/procedure_article/articles/query/keyword/{{ k }}/"><span class="badge">{{ k }}</span></a>
+					<a href="/procedure_article/articles/query/keyword/{{ k }}/"><span class="badge"><small>{{ k }}</small></span></a>
 					{% endfor %}
+					&nbsp;<small><b>评论</b></small>
+					<span class="ds-thread-count" data-thread-key="{{article.id}}" data-count-type="comments"></span>
 				</p>
-					{% if perms.procedure_article.change_article %}
-					<a style="float: left;" class="btn btn-success" role="button" href="/procedure_article/articles/{{article.id}}/update">修改</a>
-					{% endif %}
+				{% if perms.procedure_article.change_article %}
+					<div style="float: right;">
+					<a  class="btn btn-primary" role="button" href="/procedure_article/articles/{{article.id}}/update">修改文章</a>
+					</div>
+				{% endif %}
 			</div>
 		</div>
 		<hr />
@@ -33,4 +53,17 @@
 	</div>
 </div>
 {% paginate %}
+<script>
+	var duoshuoQuery = {
+		short_name : "privatemanager"
+	};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';
+		ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})(); 
+</script>
 {% endblock %}

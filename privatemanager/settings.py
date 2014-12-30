@@ -38,14 +38,17 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps' ,
     'pagination_bootstrap',
     'chartit',
     'simplejson',
     'crispy_forms',
+    'duoshuo' ,
     'procedure_article',
     'common',
     'accounts',
     'mytask' ,
+    'disqus',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,6 +66,8 @@ ROOT_URLCONF = 'privatemanager.urls'
 
 WSGI_APPLICATION = 'privatemanager.wsgi.application'
 
+SITE_ID = 1
+
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -77,6 +82,7 @@ DATABASES = {
         'PORT' : '3306'
     }
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -102,6 +108,17 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = '/media/'
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'), ]
+
+# template_context_processors 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
+)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -196,5 +213,13 @@ EMAIL_SUBJECT_PREFIX = u'[privatemanager WEB]'
 EMAIL_USE_TLS = True                             
 # admin site
 SERVER_EMAIL = 'privatemanager_1@163.com' 
+
+# add disqus
+DISQUS_WEBSITE_SHORTNAME = 'privatemanager'
+
+# set duoshuo
+DUOSHUO_SECRET = '4274cc9d8d3efc2bd37ff5eaedf19281'
+
+DUOSHUO_SHORT_NAME = 'privatemanager'
 
 

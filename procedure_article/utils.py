@@ -13,17 +13,43 @@ from chartit.chartdata import DataPool
 from chartit.charts import Chart
 
 # 查询
-def query(request , params):
+def query(request , searchCondition):
+    kwargs = {'state' : True}
+    if searchCondition is not None :
+        for (k, v) in searchCondition.items():
+            if v is not None and v != u'' :
+                kwargs[k] = v 
     
-    if isinstance(params, str):
-        articles = Article.objects.filter(state=True).filter(keyword__icontains=params)
-    elif isinstance(params, int) :
-        instance = Type.objects.get(pk=params)
-        articles = Article.objects.filter(state=True).filter(type=instance)
-        # 简单的补救
-    else :
-        articles = Article.objects.filter(state=True)
-    return articles
+    return Article.objects.filter(**kwargs)
+
+def get_type_url(typename):
+    url = "{% static 'common/imgs/django.jpg' %}"
+    
+    if typename == u'DJANGO学习 ' :
+        url = "{% static 'common/imgs/django.jpg' %}"
+        
+    if typename == u'python Core' or typename == u'Python 网络编程 ' :
+        url = "{% static 'common/imgs/python.jpg' %}"
+        
+    if typename == u'Git':
+        url = "{% static 'common/imgs/git.jpg' %}"
+
+    if typename == u'SVN':
+        url = "{% static 'common/imgs/svn.jpg' %}"
+
+    if typename == u'MySQL':
+        url = "{% static 'common/imgs/mysql.jpg' %}"
+        
+    if typename == u'bootstrap模板学习':
+        url = "{% static 'common/imgs/bootstrap.jpg' %}"
+        
+    if typename == u'Apache':
+        url = "{% static 'common/imgs/apache.jpg' %}"
+    
+    if typename == u'Jquery学习':
+        url = "{% static 'common/imgs/jquery.jpg' %}"
+    
+    return url 
     
 # 解析xml文件
 def read_xml(path):
@@ -57,9 +83,7 @@ def get_neighbour(_obj , _list):
             pre, _next = None, None
         dic = {'pre': pre, '_next': _next}
     return dic
-
-
-    
+   
 # 绘制pivot统计图表
 def draw_pivot_chart(options):
     '''

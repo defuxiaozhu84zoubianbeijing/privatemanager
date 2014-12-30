@@ -50,7 +50,8 @@ class loginForm(forms.ModelForm):
             'remember_me',
             FormActions(
                 Submit('btn_login', u'登陆', css_class='btn-default'),
-                HTML(u'<a href="/accounts/getpwd/">找回密码</a>') 
+                HTML(u'<a href="/accounts/getpwd/">找回密码</a> &nbsp;|&nbsp;') ,
+                HTML(u'<small><b>选择其他登录方式</b></small> : &nbsp;  <div class="ds-login"></div>') ,
             ),
                                   
         )

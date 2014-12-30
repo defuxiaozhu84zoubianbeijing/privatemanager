@@ -1,10 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
-from django.conf.urls import patterns, include, url
+
+from django.conf.urls import patterns, url
 from procedure_article import views
 
 urlpatterns = patterns('',
@@ -21,16 +19,11 @@ urlpatterns = patterns('',
     url(r'^articles/(?P<article_id>\d+)/update/$', views.update , name='update'),
     url(r'^articles/(?P<article_id>\d+)/detail/$', views.detail , name='detail'),
     
-    url(r'^articles/(?P<article_id>\d+)/comments/(?P<comment_id>\d+)/delete/$', views.del_comment , name='del_comment'),
-    
     url(r'^articles/query/$', views.search , name='search'),
     url(r'^articles/query/type/(?P<type_id>\d+)/$', views.query_by_type , name='query_by_type'),
     url(r'^articles/query/keyword/(?P<keyword>\S+)/$', views.query_by_keyword , name='query_by_keyword'),
+    url(r'^articles/query/author/(?P<author>\S+)/$', views.query_by_author , name='query_by_author'),
     
     url(r'^tongji/(?P<params>\S+)/$', views.tongji , name='tongji'),
-    
-    
-    
-    
     
 )
